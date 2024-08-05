@@ -1,4 +1,3 @@
-
 package com.cyberbugs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,30 +17,31 @@ import java.util.List;
  *
  * @author Cruis
  */
-
 @Entity
 @Table(name = "Post")
 public class Post {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer pid;
-    
+
     private String caption;
-    
+
+    private String content;
+
     private String image;
-    
+
     private String video;
-    
+
     @ManyToOne
     private User user;
-    
+
     private LocalDateTime createAt;
-    
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     private List<User> liked;
-    
+
     @OneToMany
     private List<Comment> comments = new ArrayList<>();
 
@@ -59,6 +59,14 @@ public class Post {
 
     public void setCaption(String caption) {
         this.caption = caption;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getImage() {
@@ -108,8 +116,5 @@ public class Post {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    
-    
-    
-    
+
 }
